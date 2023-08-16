@@ -1,8 +1,9 @@
-import signal
+import atexit
 
-def sigIntHandler(signum, frame):
-	print("\x1b[?25h")
-	exit(130)
+from utils import ansi
 
-signal.signal(signal.SIGINT, sigIntHandler)
-print("\x1b[?25l")
+# this file is here to disable cursor and re enable it when the program exit
+
+atexit.register(ansi.enableCursor)
+
+ansi.disableCursor()
