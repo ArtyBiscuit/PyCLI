@@ -1,4 +1,4 @@
-from pprint import pprint
+import cv2
 
 class Braille():
 	def __init__(
@@ -57,5 +57,17 @@ class Braille():
 	def printBoard(self, board):
 		board = self.fromBoard(board)
 		print(''.join(board))
+
+	def fromImg(self, path):
+		# load the input image
+		img = cv2.imread(path)
+
+		# convert the input image to grayscale
+		img_data = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+		# apply thresholding to convert grayscale to binary image
+		board = cv2.threshold(img_data,127,255,cv2.THRESH_BINARY)[1]
+		# board = cv2.threshold(img_data,0,127,cv2.THRESH_BINARY)[1]
+		self.printBoard(board)
 
 braille = Braille()
