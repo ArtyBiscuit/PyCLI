@@ -2,10 +2,14 @@ import time
 import random
 
 from utils.ansi				import ansi
-from utils.converter		import braille
-from utils.test.filled		import filledBoard
-from utils.test.random		import randomBoard
-from utils.test.spinning	import spinningCross
-from utils.test.from_img	import fromImg
+from utils.braillEngine		import braille
 
 import utils.signal
+
+import os
+
+TMP_DIR="./tmp"
+if not os.path.isdir(TMP_DIR):
+	os.mkdir(TMP_DIR)
+
+TMP_DIR+="/"
